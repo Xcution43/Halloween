@@ -1,0 +1,267 @@
+/* Import fonts */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+/* ----- Arcade Page Styles ----- */
+body.arcade-page {
+  margin: 0;
+  padding: 0;
+  background: #000;
+  font-family: 'Press Start 2P', monospace;
+  color: #fff;
+  display: flex;
+  justify-content: center; /* vertical centering */
+  align-items: center;     /* horizontal centering */
+  min-height: 100vh;
+}
+
+.arcade-screen {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 200px;
+  justify-content: center; /* vertical alignment inside container */
+  align-items: center;     /* horizontal alignment inside container */
+}
+
+.top-text {
+  font-size: 38px;
+  letter-spacing: 2px;
+}
+
+.logo {
+  width: 420px;
+  margin: 0 auto;
+  image-rendering: pixelated;
+}
+
+.start-btn {
+  font-size: 36px;
+  cursor: pointer;
+  display: inline-block;
+  transition: all 0.2s ease-in-out;
+}
+.start-btn:hover {
+  text-decoration: underline;
+}
+
+.footer {
+  font-size: 22px;
+  opacity: 0.8;
+  margin-top: 40px;
+  line-height: 1.2;
+}
+
+/* ----- Invite Page Styles ----- */
+
+body.invite-page {
+  margin: 0;
+  padding: 0;
+  background: #000;
+  font-family: 'Press Start 2P', monospace;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+#neonCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+.invite-container {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+.ralph-gif img {
+  margin-top: 5%;
+  width: 500px;
+  border-radius: 6px;
+  animation: float 4s infinite ease-in-out;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0); }
+}
+
+.speech-bubble-inv {
+  position: relative;
+  padding: 30px 40px;
+  background: #fff;
+  color: #000;
+  border: 4px solid #000;
+  border-radius: 20px;
+  max-width: 550px;
+  font-size: 28px;
+  text-align: center;
+}
+
+.speech-bubble-inv::after {
+  content: "";
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border: 20px solid transparent;
+  border-top-color: #fff;
+  border-bottom: 0;
+  margin-left: -20px;
+}
+
+.cursor {
+  animation: blink 0.8s infinite alternate;
+}
+
+@keyframes blink { from { opacity: 1; } to { opacity: 0; } }
+
+/* ----- Main Page Styles ----- */
+body.main-page {
+  margin: 0;
+  padding: 0;
+  font-family: 'Press Start 2P', monospace;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 100vh;
+  overflow: hidden;
+  position: relative;
+  background: #000;
+}
+
+/* Split background */
+body.main-page::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: #659480; /* left split */
+  z-index: -2;
+}
+body.main-page::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50%;
+  height: 100%;
+  background: #da5d54; /* right split */
+  z-index: -2;
+}
+
+/* Heads container */
+.heads-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1000px;
+  position: relative;
+  z-index: 1;
+  padding: 300px;
+}
+
+/* Character images */
+.vanellope img {
+  width: 455px;
+  border-radius: 8px;
+  border: 4px solid #fff;
+  animation: float 4s infinite ease-in-out;
+  position: relative;
+  left: -55%; /* center of left split */
+}
+.ralph1 img {
+  width: 400px;
+  border-radius: 8px;
+  border: 4px solid #fff;
+  animation: float 4s infinite ease-in-out;
+  position: relative;
+  right: -50%; /* center of right split */
+}
+
+/* Floating animation */
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+/* Speech bubbles */
+.speech-bubble {
+  position: absolute;
+  padding: 20px 30px;
+  background: #fff;
+  color: #000;
+  border: 4px solid #000;
+  border-radius: 20px;
+  max-width: 350px;
+  font-size: 20px;
+  text-align: center;
+  line-height: 1.4;
+  word-wrap: break-word;   /* wrap long words */
+  white-space: pre-wrap;   /* preserve spaces */
+  box-shadow: 0 0 15px rgba(255,255,255,0.5);
+  animation: glow 1.5s infinite alternate;
+}
+
+/* Vanellope bubble (top middle of left split) */
+.speech-bubble2 {
+  top: 80px;
+  left: 25%;  /* center of left split */
+  transform: translateX(-50%);
+}
+
+/* Ralph bubble (bottom middle of right split) */
+.speech-bubble1 {
+  bottom: 300px;
+  left: 75%;  /* center of right split */
+  transform: translateX(-50%);
+}
+
+/* Remove any pseudo-elements for pointers */
+.speech-bubble1::after,
+.speech-bubble2::after {
+  content: none;
+}
+
+/* Bubble glow animation */
+@keyframes glow {
+  0% { box-shadow: 0 0 10px rgba(255,255,255,0.3); }
+  100% { box-shadow: 0 0 25px rgba(255,255,255,0.6); }
+}
+
+/* "Let's Go" Button */
+#letsGoBtn {
+  position: absolute;
+  bottom: 100px;
+  left: 50%; /* Ralph's side */
+  transform: translateX(-50%);
+  padding: 15px 30px;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 20px;
+  cursor: pointer;
+  border: 4px solid #000;
+  border-radius: 12px;
+  background: #f82c58;
+  color: #000;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+#letsGoBtn:hover {
+  box-shadow: 0 0 25px rgba(255,255,255,0.8);
+}
