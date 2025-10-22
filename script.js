@@ -85,52 +85,106 @@ function typeTextEffect(spanElement, text, speed=80){
 }
 
 // ---------------- Main Page Dialog ----------------
-function startDialog(){
+function startDialog() {
   const bubble1 = document.getElementById('bubble1'); // Ralph
   const bubble2 = document.getElementById('bubble2'); // Vanellope
   const btn = document.getElementById('letsGoBtn');
 
-  if(!bubble1 || !bubble2) return;
+  if (!bubble1 || !bubble2) return;
 
-  const dialog=[
-    {speaker:'vanellope', text:"Can I go to the Halloween Party at Tim and Anu's place?"},
-    {speaker:'ralph', text:"I don't know. Can you be annoyingly good looking?"},
-    {speaker:'vanellope', text:"I don't know. Can I? Can I? Can I? Can I? Can I? Can I? Can I?"},
-    {speaker:'ralph', text:"Okay!!! Just don't forget to be there at 8pm and remember, the costume is mandatory!!!"}
+  const dialog = [
+    { speaker: 'vanellope', text: "Can I go to the Halloween Party at Tim and Anu's place?" },
+    { speaker: 'ralph', text: "I don't know. Can you be annoyingly good looking?" },
+    { speaker: 'vanellope', text: "I don't know. Can I? Can I? Can I? Can I? Can I? Can I? Can I?" },
+    { speaker: 'ralph', text: "Okay!!! Just don't forget to be there at 8pm and remember, the costume is mandatory!!!" }
   ];
 
-  let step=0, typing=false;
+  let step = 0;
+  let typing = false;
 
-  function typeWriter(text, element, callback){
-    let i=0; element.innerText='';
-    typing=true;
+  function typeWriter(text, element, callback) {
+    let i = 0;
+    element.innerText = '';
+    typing = true;
 
-    function type(){
-      if(i<text.length){
-        element.innerText+=text.charAt(i);
+    // Reset bubble width to auto before typing
+    element.style.width = 'auto';
+
+    function type() {
+      if (i < text.length) {
+        element.innerText += text.charAt(i);
         i++;
+
+        // Dynamically adjust width while typing
+        const computedWidth = element.scrollWidth + 20; // add padding
+        const maxWidth = window.innerWidth * 0.9;
+        const minWidth = 120;
+        element.style.width = Math.min(Math.max(computedWidth, minWidth), maxWidth) + 'px';
+
         setTimeout(type, 40);
       } else {
-        typing=false;
-        if(callback) callback();
+        typing = false;
+        if (callback) callback();
       }
     }
     type();
   }
 
-  typeWriter(dialog[0].text, bubble2);
+  // Update bubble position above character
+function updateBubblePosition(speaker) {
+  const bubble = speaker === 'ralph' ? document.getElementById('bubble1') : document.getElementById('bubble2');
+  const img = speaker === 'ralph' ? document.querySelector('.ralph1 img') : document.querySelector('.vanellope img');
+  const imgRect = img.getBoundingClientRect();
 
-document.body.addEventListener('click', ()=>{
-  if(typing) return;
-  step++;
-  if(step >= dialog.length){
-    btn.style.display = 'block'; // show button only after dialog
-    return;
-  }
-  const current = dialog[step];
-  typeWriter(current.text, current.speaker === 'ralph' ? bubble1 : bubble2);
-});
+  let newTop = window.scrollY + imgRect.top - bubble.offsetHeight - 10;
+
+  // Keep bubble from going above top of viewport
+  const minTop = 10; // minimum 10px from top
+  if (newTop < minTop) newTop = minTop;
+
+  bubble.style.top = newTop + 'px';
+  bubble.style.transition = 'top 0.3s ease'; // smooth movement
 }
+
+  // Start first dialog
+  typeWriter(dialog[0].text, bubble2, () => {
+    updateBubblePosition('vanellope');
+  });
+
+  document.body.addEventListener('click', () => {
+    if (typing) return;
+    step++;
+    if (step >= dialog.length) {
+      btn.style.display = 'block';
+      document.querySelector('.ralph1 img').classList.remove('speaking');
+      document.querySelector('.vanellope img').classList.remove('speaking');
+      return;
+    }
+
+    const current = dialog[step];
+
+    // Add speaking animation
+    if (current.speaker === 'ralph') {
+      document.querySelector('.ralph1 img').classList.add('speaking');
+      document.querySelector('.vanellope img').classList.remove('speaking');
+    } else {
+      document.querySelector('.vanellope img').classList.add('speaking');
+      document.querySelector('.ralph1 img').classList.remove('speaking');
+    }
+
+    // Type dialog and reposition bubble
+    typeWriter(current.text, current.speaker === 'ralph' ? bubble1 : bubble2, () => {
+      updateBubblePosition(current.speaker);
+    });
+  });
+
+  // Reposition bubbles on window resize
+  window.addEventListener('resize', () => {
+    updateBubblePosition('ralph');
+    updateBubblePosition('vanellope');
+  });
+}
+
 
 // ---------------- DOMContentLoaded ----------------
 document.addEventListener('DOMContentLoaded', ()=>{
