@@ -18,36 +18,44 @@ body.arcade-page {
   text-align: center;
   display: flex;
   flex-direction: column;
-  gap: 200px;
-  justify-content: center; /* vertical alignment inside container */
-  align-items: center;     /* horizontal alignment inside container */
+  gap: clamp(80px, 15%, 200px); /* responsive gap */
+  justify-content: center; 
+  align-items: center;     
 }
 
 .top-text {
-  font-size: 38px;
+  font-size: clamp(24px, 3vw, 38px); /* responsive font */
   letter-spacing: 2px;
 }
 
 .logo {
-  width: 420px;
+  width: clamp(250px, 35vw, 420px); /* responsive logo width */
   margin: 0 auto;
   image-rendering: pixelated;
 }
 
 .start-btn {
-  font-size: 36px;
+  font-size: clamp(20px, 2.5vw, 36px); /* responsive button font */
   cursor: pointer;
   display: inline-block;
   transition: all 0.2s ease-in-out;
+  padding: clamp(10px, 1.5vw, 20px) clamp(20px, 3vw, 30px); /* responsive padding */
+  border: 4px solid #fff;
+  border-radius: 12px;
+  background: #000000;
+  color: #ffffff;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
+
 .start-btn:hover {
+  box-shadow: 0 0 25px rgba(255,255,255,0.8);
   text-decoration: underline;
 }
 
 .footer {
-  font-size: 22px;
+  font-size: clamp(14px, 1.5vw, 22px); /* responsive footer */
   opacity: 0.8;
-  margin-top: 40px;
+  margin-top: clamp(20px, 5%, 40px);
   line-height: 1.2;
 }
 
@@ -234,7 +242,7 @@ body.main-page::after {
 
 /* Vanellope bubble (top middle of left split) */
 .speech-bubble2 {
-  top: clamp(50px, 5%, 100px);
+  bottom: clamp(100px, 15%, 300px);
   left: 25%;
   transform: translateX(-50%);
 }
