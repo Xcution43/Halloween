@@ -178,21 +178,32 @@ body.main-page::after {
 }
 
 /* Character images */
+.vanellope {
+  flex: 1;
+  display: flex;
+  justify-content: center; /* center Vanellope in left split */
+}
+
 .vanellope img {
   width: clamp(250px, 35%, 455px);
   border-radius: 8px;
   border: 4px solid #fff;
   animation: float 4s infinite ease-in-out;
   position: relative;
-  left: -50%; /* adjusted for responsive centering */
 }
+
+.ralph1 {
+  flex: 1;
+  display: flex;
+  justify-content: center; /* center Ralph in right split */
+}
+
 .ralph1 img {
   width: clamp(220px, 30%, 400px);
   border-radius: 8px;
   border: 4px solid #fff;
   animation: float 4s infinite ease-in-out;
   position: relative;
-  right: -50%; /* adjusted for responsive centering */
 }
 
 /* Floating animation */
