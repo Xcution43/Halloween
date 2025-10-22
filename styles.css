@@ -93,7 +93,7 @@ body.invite-page {
 
 .ralph-gif img {
   margin-top: 5%;
-  width: 500px;
+  width: 400px;
   border-radius: 6px;
   animation: float 4s infinite ease-in-out;
 }
@@ -106,13 +106,13 @@ body.invite-page {
 
 .speech-bubble-inv {
   position: relative;
-  padding: 30px 40px;
+  padding: 20px 30px;
   background: #fff;
   color: #000;
   border: 4px solid #000;
   border-radius: 20px;
-  max-width: 550px;
-  font-size: 28px;
+  max-width: 400px;
+  font-size: 20px;
   text-align: center;
 }
 
@@ -269,7 +269,7 @@ body.main-page::after {
 /* "Let's Go" Button */
 #letsGoBtn {
   position: absolute;
-  bottom: clamp(40px, 8%, 100px);
+  bottom: clamp(100px, 15%, 300px);
   left: 50%;
   transform: translateX(-50%);
   padding: clamp(10px, 1%, 20px) clamp(20px, 2%, 30px);
