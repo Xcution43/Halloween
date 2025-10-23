@@ -85,34 +85,36 @@ function typeTextEffect(spanElement, text, speed=80){
 }
 
 // ---------------- Main Page Dialog ----------------
-function startDialog(){
+function startDialog() {
   const bubble1 = document.getElementById('bubble1'); // Ralph
   const bubble2 = document.getElementById('bubble2'); // Vanellope
   const btn = document.getElementById('letsGoBtn');
 
-  if(!bubble1 || !bubble2) return;
+  if (!bubble1 || !bubble2 || !btn) return;
 
-  const dialog=[
-    {speaker:'vanellope', text:"Can I go to the Halloween Party at Tim and Anu's place?"},
-    {speaker:'ralph', text:"I don't know. Can you be annoyingly good looking?"},
-    {speaker:'vanellope', text:"I don't know. Can I? Can I? Can I? Can I? Can I? Can I? Can I?"},
-    {speaker:'ralph', text:"Okay!!! Just don't forget to be there at 8pm and remember, the costume is mandatory!!!"}
+  let step = 0;
+  let typing = false;
+
+  const dialog = [
+    { speaker: 'vanellope', text: "Can I go to the Halloween Party at Tim and Anu's place?" },
+    { speaker: 'ralph', text: "I don't know. Can you be annoyingly good looking?" },
+    { speaker: 'vanellope', text: "I don't know. Can I? Can I? Can I? Can I? Can I? Can I? Can I?" },
+    { speaker: 'ralph', text: "Okay!!! Just don't forget to be there at 8pm and remember, the costume is mandatory!!!" }
   ];
 
-  let step=0, typing=false;
+  function typeWriter(text, element, callback) {
+    let i = 0;
+    element.innerText = '';
+    typing = true;
 
-  function typeWriter(text, element, callback){
-    let i=0; element.innerText='';
-    typing=true;
-
-    function type(){
-      if(i<text.length){
-        element.innerText+=text.charAt(i);
+    function type() {
+      if (i < text.length) {
+        element.innerText += text.charAt(i);
         i++;
         setTimeout(type, 40);
       } else {
-        typing=false;
-        if(callback) callback();
+        typing = false;
+        if (callback) callback();
       }
     }
     type();
@@ -120,17 +122,19 @@ function startDialog(){
 
   typeWriter(dialog[0].text, bubble2);
 
-document.body.addEventListener('click', ()=>{
-  if(typing) return;
-  step++;
-  if(step >= dialog.length){
-    btn.style.display = 'block'; // show button only after dialog
-    return;
-  }
-  const current = dialog[step];
-  typeWriter(current.text, current.speaker === 'ralph' ? bubble1 : bubble2);
-});
+
+  document.body.addEventListener('click', () => {
+    if (typing) return;
+    step++;
+    if (step >= dialog.length) {
+      btn.style.display = 'block'; 
+      return;
+    }
+    const current = dialog[step];
+    typeWriter(current.text, current.speaker === 'ralph' ? bubble1 : bubble2);
+  });
 }
+
 
 // ---------------- DOMContentLoaded ----------------
 document.addEventListener('DOMContentLoaded', ()=>{

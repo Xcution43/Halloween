@@ -1,4 +1,3 @@
-/* Import fonts */
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 /* ----- Arcade Page Styles ----- */
@@ -9,8 +8,8 @@ body.arcade-page {
   font-family: 'Press Start 2P', monospace;
   color: #fff;
   display: flex;
-  justify-content: center; /* vertical centering */
-  align-items: center;     /* horizontal centering */
+  justify-content: center; 
+  align-items: center;     
   min-height: 100vh;
 }
 
@@ -18,28 +17,28 @@ body.arcade-page {
   text-align: center;
   display: flex;
   flex-direction: column;
-  gap: clamp(80px, 15%, 200px); /* responsive gap */
+  gap: clamp(80px, 15%, 200px); 
   justify-content: center; 
   align-items: center;     
 }
 
 .top-text {
-  font-size: clamp(24px, 3vw, 38px); /* responsive font */
+  font-size: clamp(24px, 3vw, 38px); 
   letter-spacing: 2px;
 }
 
 .logo {
-  width: clamp(250px, 35vw, 420px); /* responsive logo width */
+  width: clamp(250px, 35vw, 420px); 
   margin: 0 auto;
   image-rendering: pixelated;
 }
 
 .start-btn {
-  font-size: clamp(20px, 2.5vw, 36px); /* responsive button font */
+  font-size: clamp(20px, 2.5vw, 36px);
   cursor: pointer;
   display: inline-block;
   transition: all 0.2s ease-in-out;
-  padding: clamp(10px, 1.5vw, 20px) clamp(20px, 3vw, 30px); /* responsive padding */
+  padding: clamp(10px, 1.5vw, 20px) clamp(20px, 3vw, 30px);
   border: 4px solid #fff;
   border-radius: 12px;
   background: #000000;
@@ -53,7 +52,7 @@ body.arcade-page {
 }
 
 .footer {
-  font-size: clamp(14px, 1.5vw, 22px); /* responsive footer */
+  font-size: clamp(14px, 1.5vw, 22px);
   opacity: 0.8;
   margin-top: clamp(20px, 5%, 40px);
   line-height: 1.2;
@@ -151,7 +150,7 @@ body.main-page {
   background: #000;
 }
 
-/* Split background */
+
 body.main-page::before {
   content: "";
   position: absolute;
@@ -159,7 +158,7 @@ body.main-page::before {
   left: 0;
   width: 50%;
   height: 100%;
-  background: #659480; /* left split */
+  background: #659480; 
   z-index: -2;
 }
 body.main-page::after {
@@ -169,11 +168,11 @@ body.main-page::after {
   left: 50%;
   width: 50%;
   height: 100%;
-  background: #da5d54; /* right split */
+  background: #da5d54; 
   z-index: -2;
 }
 
-/* Heads container */
+
 .heads-container {
   display: flex;
   justify-content: space-between;
@@ -182,14 +181,14 @@ body.main-page::after {
   max-width: 1200px;
   position: relative;
   z-index: 1;
-  padding: clamp(100px, 15%, 300px); /* responsive padding */
+  padding: clamp(100px, 15%, 300px); 
 }
 
-/* Character images */
+
 .vanellope {
   flex: 1;
   display: flex;
-  justify-content: center; /* center Vanellope in left split */
+  justify-content: center; 
 }
 
 .vanellope img {
@@ -203,7 +202,7 @@ body.main-page::after {
 .ralph1 {
   flex: 1;
   display: flex;
-  justify-content: center; /* center Ralph in right split */
+  justify-content: center; 
 }
 
 .ralph1 img {
@@ -214,14 +213,14 @@ body.main-page::after {
   position: relative;
 }
 
-/* Floating animation */
+
 @keyframes float {
   0% { transform: translateY(0); }
   50% { transform: translateY(-10px); }
   100% { transform: translateY(0); }
 }
 
-/* Speech bubbles */
+
 .speech-bubble {
   position: absolute;
   padding: clamp(10px, 1.5%, 30px) clamp(15px, 2%, 40px);
@@ -240,36 +239,36 @@ body.main-page::after {
   animation: glow 1.5s infinite alternate;
 }
 
-/* Vanellope bubble (top middle of left split) */
+
 .speech-bubble2 {
   bottom: clamp(100px, 15%, 300px);
   left: 25%;
   transform: translateX(-50%);
 }
 
-/* Ralph bubble (bottom middle of right split) */
+
 .speech-bubble1 {
   bottom: clamp(100px, 15%, 300px);
   left: 75%;
   transform: translateX(-50%);
 }
 
-/* Remove pseudo-elements */
+
 .speech-bubble1::after,
 .speech-bubble2::after {
   content: none;
 }
 
-/* Bubble glow animation */
+
 @keyframes glow {
   0% { box-shadow: 0 0 10px rgba(255,255,255,0.3); }
   100% { box-shadow: 0 0 25px rgba(255,255,255,0.6); }
 }
 
-/* "Let's Go" Button */
+
 #letsGoBtn {
   position: absolute;
-  bottom: clamp(100px, 15%, 300px);
+  bottom: clamp(40px, 8%, 100px);
   left: 50%;
   transform: translateX(-50%);
   padding: clamp(10px, 1%, 20px) clamp(20px, 2%, 30px);
